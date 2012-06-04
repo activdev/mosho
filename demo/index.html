@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Mosho.js Demo</title>
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono|Josefin+Sans|Actor' rel='stylesheet' type='text/css'>
+    <link href="css/demo.css" rel="stylesheet" type="text/html">
+  </head>
+  <body>
+    <div id="mosho">
+      
+      <div class="mosho-slide" id="title"
+           data-scale=1>
+        <h1>Mosho</h1>
+        <p>A new presentation framework</p>
+      </div>
+      
+      <div class="mosho-slide" id="do-whaaa"
+           data-x=1120>
+        <h2>So what's it do?</h2>
+        <p>
+          If you're familiar with <a href="#">impress.js</a>, you should feel pretty comfortable
+          <br />
+          (Mosho was based on it).
+        </p>
+        <p>Keep going to find out more.</p>
+      </div>
+      
+      <div class="mosho-slide" id="3d-transform"
+           data-x=1120 data-y=-800 data-z=800
+           data-rotx=45>
+        <h3>3D transform goodness</h3>
+        <p>It certainly looks fancy, but doing it is easy:</p>
+        <pre class="code" style="width: 400px">
+&lt;div class="mosho-slide"
+     data-y=-800 data-z=800
+     data-rotx=45&gt;
+   &lt;h1&gt;Hello, Mosho!&lt;/h1&gt;
+&lt;/div&gt;</pre>
+      </div>
+      
+      <div class="mosho-slide" id="scene-tree"
+           data-x=2240 data-y=-800 data-z=800
+           data-rotx=45>
+        <h3>...in a scene tree</h3>
+        <pre class="code" style="width: 550px">
+&lt;div class="mosho-group" data-x=1000&gt;
+  &lt;div class="mosho-slide" data-y=-500&gt;
+     &lt;h1&gt;one&lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;div class="mosho-slide" data-y=500&gt;
+     &lt;h1&gt;two&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+      </div>
+      
+      <div class="mosho-slide" id="slide-transitions"
+           data-x=1120 data-y=1120
+           data-transition="2s ease">
+        <h3>Per-"slide" transitions</h3>
+        <pre class="code" style="width: 440px">
+&lt;div class="mosho-slide"
+     data-transition="2s ease"&gt;
+   &lt;h2&gt;That was ease-y&lt;/h2&gt;
+&lt;/div&gt;</pre>
+      </div>
+      
+      <div class="mosho-group"
+           data-x=2240 data-y=1120>
+        <div class="mosho-slide" id="nonlinear"
+             data-next="apis-rule">
+          <h3>Non-linear linking</h3>
+          <p>Would you like to know more? <a href="#nonlinear-more">Yes</a></p>
+          <aside id="nonlinear-tag"></aside>
+        </div>
+        <div class="mosho-slide" id="nonlinear-more"
+             data-next="nonlinear"
+             data-z=-480 data-roty=180>
+          <p>It's not too tricky</p>
+          <pre class="code" style="width: 640px">
+&lt;div class="mosho-slide" id="slide-a"
+     data-next="slide-b"&gt;
+   &lt;a href="#slide-a-more"&gt;detour&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="mosho-slide" id="slide-a-more"
+     data-next="slide-a"&gt;
+   &lt;p&gt;scenic route&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="mosho-slide" id="slide-b"
+     data-prev="slide-a"&gt;
+   &lt;p&gt;final destination&lt;/p&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+      
+      <div class="mosho-slide" id="apis-rule"
+           data-prev="nonlinear"
+           data-x=1120 data-y=2240>
+        <h3>A handy API?</h3>
+        <pre class="code" style="width: 500px">
+mosho.enter("mySlide", function () {
+  console.log("yay!")
+})</pre>
+      </div>
+      
+      <div class="mosho-slide" id="plugins-too"
+           data-x=1120 data-y=2240 data-z=-480
+           data-roty=-180>
+        <h3>...and plugins!</h3>
+        <pre class="code" style="width: 500px">
+mosho.plugin({
+  name: "scaleActiveSlide",
+  preShow: function (evt) {
+    prev = evt.detail.prevSlide
+    next = evt.detail.nextSlide
+    if (prev) { prev.scale(0.25) }
+    if (next) { next.scale(4) }
+  }
+})</pre>
+      </div>
+    </div>
+  </body>
+  <script src="../dist/mosho.js"></script>
+  <script src="js/demo.js"></script>
+</html>
