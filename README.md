@@ -1,5 +1,7 @@
 Mosho
 ===
+[Check out the demo](http://pdehn.github.com/mosho/demo)
+
 Mosho is another browser-based presentation framework. Inspired by impress.js, but in my own flavor.
 
 If you're familiar with impress, the basics are the same. Use data-(x|y|z|rot(x|y|z)|scale) attributes to move around mosho-slide class elements all wrapped in a mosho class container.
